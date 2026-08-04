@@ -1,0 +1,135 @@
+.pair-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.pair-modal {
+  background: #fff;
+  border-radius: 8px;
+  width: min(960px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.pair-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pair-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.pair-modal-help {
+  margin: 10px 20px 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.pair-table-wrap {
+  overflow: auto;
+  padding: 12px 20px 8px;
+}
+
+.pair-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pair-table th {
+  text-align: left;
+  padding: 6px 4px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.pair-table td {
+  padding: 4px;
+}
+
+.pair-table input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.pair-row-actions {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.pair-row-actions button {
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  border-radius: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.pair-error {
+  margin: 0 20px;
+  color: var(--red);
+  font-size: 13px;
+}
+
+.pair-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.pair-modal-footer-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 4px;
+  padding: 9px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: none;
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+
+.empty-grid {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+}

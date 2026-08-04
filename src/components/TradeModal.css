@@ -1,0 +1,108 @@
+.trade-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 16px;
+}
+
+.trade-modal {
+  background: #fff;
+  border-radius: 8px;
+  width: min(520px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+.trade-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.trade-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.trade-modal-body {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trade-modal-body label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.trade-modal-body input,
+.trade-modal-body select {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 9px 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.trade-modal-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 4px 0;
+}
+
+.trade-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trade-radio-row .inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.trade-error {
+  color: var(--red);
+  background: #fdecec;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.trade-ok {
+  color: var(--green);
+  background: #e8f7ec;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.trade-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.trade-modal-footer-right {
+  display: flex;
+  gap: 8px;
+}
