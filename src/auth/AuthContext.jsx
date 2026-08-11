@@ -14,6 +14,20 @@ const EMPTY_FLAGS = {
   closedorder: 0,
 };
 
+const SESSION_NOTICE_KEY = "td_session_notice";
+const SESSION_POLL_MS = 5000;
+
+export function getSessionNotice() {
+  const msg = sessionStorage.getItem(SESSION_NOTICE_KEY) || "";
+  if (msg) sessionStorage.removeItem(SESSION_NOTICE_KEY);
+  return msg;
+}
+
+export function setSessionNotice(message) {
+  if (message) sessionStorage.setItem(SESSION_NOTICE_KEY, message);
+  else sessionStorage.removeItem(SESSION_NOTICE_KEY);
+}
+
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => getStoredToken());
   const [username, setUsername] = useState("");
@@ -31,7 +45,8 @@ export function AuthProvider({ children }) {
     setPairs(Array.isArray(data.pairs) ? data.pairs : []);
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback((notice) => {
+    if (notice) setSessionNotice(notice);
     setStoredToken("");
     setToken("");
     setUsername("");
@@ -49,8 +64,15 @@ export function AuthProvider({ children }) {
       try {
         const data = await api.me();
         if (!cancelled) applySession(data, token);
-      } catch {
-        if (!cancelled) logout();
+      } catch (err) {
+        if (!cancelled) {
+          const kicked = err?.code === "SESSION_REPLACED";
+          logout(
+            kicked
+              ? err.message
+              : "",
+          );
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -60,9 +82,42 @@ export function AuthProvider({ children }) {
     };
   }, [token, applySession, logout]);
 
+  // PHP-style session poll — kick local user when another login takes over
+  useEffect(() => {
+    if (!token) return undefined;
+    let cancelled = false;
+
+    async function poll() {
+      try {
+        const data = await api.checkSession();
+        if (cancelled) return;
+        if (data?.output === "logout") {
+          logout(
+            data.message ||
+              "You were logged out because this account signed in from another device or browser.",
+          );
+        }
+      } catch (err) {
+        if (cancelled) return;
+        if (err?.code === "SESSION_REPLACED" || err?.status === 401) {
+          logout(
+            err.message ||
+              "You were logged out because this account signed in from another device or browser.",
+          );
+        }
+      }
+    }
+
+    const id = setInterval(poll, SESSION_POLL_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, [token, logout]);
+
   const login = useCallback(
-    async (user, password) => {
-      const data = await api.login(user, password);
+    async (user, password, otp) => {
+      const data = await api.login(user, password, otp);
       applySession(data, data.token);
       return data;
     },

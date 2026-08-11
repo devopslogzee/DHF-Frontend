@@ -66,6 +66,99 @@
   font-size: 13px;
 }
 
+.login-ok {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  color: #065f46;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.login-hint {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.35;
+}
+
+.login-link-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-link-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.login-enable {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-qr {
+  width: 180px;
+  height: 180px;
+  align-self: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.login-enable input {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.login-enable-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.login-enable-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-enable-actions button[type="submit"] {
+  background: var(--blue);
+  color: #fff;
+}
+
+.login-enable-actions button[type="button"] {
+  background: #f3f4f6;
+}
+
+.login-notice {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+  color: #9a3412;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .login-footer {
   margin-top: 18px;
   text-align: center;
