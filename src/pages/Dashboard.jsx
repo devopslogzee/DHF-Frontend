@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import ControlsBar from "../components/ControlsBar";
 import PriceGrid from "../components/PriceGrid";
 import PairSettings from "../components/PairSettings";
+import CreateUserModal from "../components/CreateUserModal";
 import TradeModal from "../components/TradeModal";
 import { useLiveSocket } from "../hooks/useLiveSocket";
 import { useAuth } from "../auth/AuthContext";
@@ -11,9 +12,10 @@ import { api } from "../api";
 import "../App.css";
 
 export default function Dashboard() {
-  const { username, flags, pairs, loading, isAuthenticated, logout, savePairs } = useAuth();
+  const { username, role, flags, pairs, loading, isAuthenticated, isAdmin, logout, savePairs } = useAuth();
   const navigate = useNavigate();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [createUserOpen, setCreateUserOpen] = useState(false);
   const [tradeOpen, setTradeOpen] = useState(false);
   // Optimistic live switch — OFF freezes last snapshot and stops WS/poll
   const [liveOn, setLiveOn] = useState(true);
@@ -85,12 +87,14 @@ export default function Dashboard() {
     <div className="dashboard">
       <Header
         userName={username}
+        userRole={role}
         eaOn={liveOn}
         liveOn={liveOn}
         onToggleEa={handleToggleEa}
         connected={connected}
         showEa={flags.ea === 1}
         onOpenSettings={() => setSettingsOpen(true)}
+        onCreateUser={isAdmin ? () => setCreateUserOpen(true) : undefined}
         onLogout={handleLogout}
       />
 
@@ -120,6 +124,8 @@ export default function Dashboard() {
         onClose={() => setSettingsOpen(false)}
         onSave={savePairs}
       />
+
+      <CreateUserModal open={createUserOpen} onClose={() => setCreateUserOpen(false)} />
 
       <TradeModal
         open={tradeOpen}

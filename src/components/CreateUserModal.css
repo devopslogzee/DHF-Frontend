@@ -1,0 +1,110 @@
+.create-user-modal {
+  background: #fff;
+  border-radius: 8px;
+  width: min(440px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.create-user-body {
+  padding: 12px 20px 22px;
+}
+
+.create-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-user-form input,
+.create-user-form select {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.create-user-form button {
+  border: none;
+  border-radius: 4px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  padding: 11px;
+  cursor: pointer;
+}
+
+.create-user-form button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.create-user-form .login-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.create-user-form .login-ok {
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.create-user-list {
+  margin-top: 18px;
+}
+
+.create-user-list h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.create-user-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.create-user-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+}
+
+.role-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.role-admin {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.role-user {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.user-source {
+  margin-left: auto;
+  color: #9ca3af;
+  font-size: 11px;
+}

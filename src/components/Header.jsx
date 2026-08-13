@@ -1,11 +1,13 @@
 export default function Header({
   userName,
+  userRole,
   eaOn,
   onToggleEa,
   connected,
   liveOn = true,
   showEa = true,
   onOpenSettings,
+  onCreateUser,
   onLogout,
 }) {
   return (
@@ -17,6 +19,9 @@ export default function Header({
       <div className="topbar-center">
         <span className="user-label">
           USER : <strong>{userName}</strong>
+          {userRole && (
+            <span className={`role-pill role-${userRole}`}>{userRole}</span>
+          )}
         </span>
         {!connected && liveOn && <span className="offline-pill">OFFLINE</span>}
         {!liveOn && <span className="paused-pill">PAUSED</span>}
@@ -35,6 +40,11 @@ export default function Header({
               {eaOn ? "ON" : "OFF"}
             </button>
           </>
+        )}
+        {onCreateUser && (
+          <button className="icon-btn" title="Create user" type="button" onClick={onCreateUser}>
+            +
+          </button>
         )}
         {onOpenSettings && (
           <button className="icon-btn" title="Pair settings" type="button" onClick={onOpenSettings}>

@@ -70,6 +70,27 @@ body {
 .user-label {
   color: var(--blue);
   font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-pill {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.role-pill.role-admin {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.role-pill.role-user {
+  background: #f3f4f6;
+  color: #374151;
 }
 
 .offline-pill {

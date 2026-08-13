@@ -94,6 +94,12 @@ export const api = {
       body: { username, password, otp },
       auth: "none",
     }),
+  listUsers: () => request("/auth/users"),
+  createUser: (username, password, role) =>
+    request("/auth/users", {
+      method: "POST",
+      body: { username, password, role },
+    }),
   getPairs: () => request("/me/pairs"),
   savePairs: (pairs) =>
     request("/me/pairs", { method: "PUT", body: { pairs } }),

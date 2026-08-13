@@ -31,6 +31,7 @@ export function setSessionNotice(message) {
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => getStoredToken());
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("user");
   const [flags, setFlags] = useState(EMPTY_FLAGS);
   const [pairs, setPairs] = useState([]);
   const [loading, setLoading] = useState(!!getStoredToken());
@@ -41,6 +42,7 @@ export function AuthProvider({ children }) {
       setToken(nextToken);
     }
     setUsername(data.username || "");
+    setRole(data.role || (data.is_admin ? "admin" : "user"));
     setFlags({ ...EMPTY_FLAGS, ...(data.flags || {}) });
     setPairs(Array.isArray(data.pairs) ? data.pairs : []);
   }, []);
@@ -50,6 +52,7 @@ export function AuthProvider({ children }) {
     setStoredToken("");
     setToken("");
     setUsername("");
+    setRole("user");
     setFlags(EMPTY_FLAGS);
     setPairs([]);
   }, []);
@@ -140,17 +143,19 @@ export function AuthProvider({ children }) {
     () => ({
       token,
       username,
+      role,
       flags,
       pairs,
       loading,
       isAuthenticated: !!token && !!username,
+      isAdmin: role === "admin",
       login,
       logout,
       refreshPairs,
       savePairs,
       setPairs,
     }),
-    [token, username, flags, pairs, loading, login, logout, refreshPairs, savePairs],
+    [token, username, role, flags, pairs, loading, login, logout, refreshPairs, savePairs],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
