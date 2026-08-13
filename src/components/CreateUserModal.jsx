@@ -12,6 +12,16 @@ export default function CreateUserModal({ open, onClose }) {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    if (open) return;
+    setUsername("");
+    setPassword("");
+    setRole("user");
+    setError("");
+    setMessage("");
+    setBusy(false);
+  }, [open]);
+
+  useEffect(() => {
     if (!open) return;
     setError("");
     setMessage("");
@@ -50,6 +60,8 @@ export default function CreateUserModal({ open, onClose }) {
         ...next.filter((u) => u.username.toLowerCase() === createdName.toLowerCase()),
         ...next.filter((u) => u.username.toLowerCase() !== createdName.toLowerCase()),
       ]);
+      // Close only after successful create (not on error)
+      setTimeout(() => onClose(), 600);
     } catch (err) {
       setError(err.message || "Create user failed");
     } finally {
@@ -58,8 +70,8 @@ export default function CreateUserModal({ open, onClose }) {
   }
 
   return (
-    <div className="pair-modal-backdrop" onClick={onClose}>
-      <div className="create-user-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="pair-modal-backdrop">
+      <div className="create-user-modal">
         <div className="pair-modal-header">
           <h2>Create User</h2>
           <button type="button" className="icon-btn" onClick={onClose} title="Close">
